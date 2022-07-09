@@ -1,7 +1,6 @@
 
 const getBlog = async (req, res) => {
-
-    res.send("Hey");
+    return res.status(200).json(req.user);
 }
 
 

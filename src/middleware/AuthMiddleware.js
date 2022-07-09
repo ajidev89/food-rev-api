@@ -13,8 +13,8 @@ const checkUserLoggedIn = (req,res,next)=>{
                     "message": "User's token has expired"
                });
             }
-            res.user = dedcodeToken
-            next;
+            req.user = dedcodeToken
+            next();
         })
    }
 
