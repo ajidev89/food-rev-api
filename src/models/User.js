@@ -3,28 +3,48 @@
  const Schema = mongoose.Schema;
 
  const userSchema = new Schema({
-    first_name: {
-        type: String,
-        required: true
+        first_name: {
+            type: String,
+            required: true
+        },
+        last_name: {
+            type: String,
+            required: true
+        },
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+            lowercase:true
+        },
+        password: {
+            type: String,
+            required: true,
+            miniLenght:6
+        },
+        role: {
+            type: String,
+            required: true
+        },
+        password_reset: {
+            type: String,
+            required: false
+        },
+        
     },
-    last_name: {
-        type: String,
-        required: true
+    { 
+        toJSON: { 
+            virtuals: true,
+            transform: function (doc, ret) {
+            delete ret._id;
+            delete ret.__v;
+            delete ret.password;
+            delete ret.password_reset;
+            return ret;
+            }
+        }
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    role: {
-        type: String,
-        required: true
-    },
-    },
+
     { timestamps:true });
 
 
