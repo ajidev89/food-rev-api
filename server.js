@@ -4,9 +4,14 @@ const router = require('./src/routes')
 const bodyParser = require('body-parser')
 const morgan = require('morgan');
 const app = express()
+const fileUpload = require("express-fileupload");
 
 dbConnection(app)
-
+app.use(
+    fileUpload({
+      useTempFiles: true
+    })
+);
 
 //MiddleWare
 app.use(morgan("tiny"));

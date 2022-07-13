@@ -14,15 +14,34 @@ const checkUserLoggedIn = (req,res,next)=>{
                });
             }
             req.user = dedcodeToken
-            next();
+            return next();
+        })
+   }else{
+        return res.status(403).json({
+            "message": "User not logged in"
         })
    }
 
-   return res.status(403).json({
-        "message": "User not logged in"
-   })
+
 }
 
+const checkAdminRole = (req,res,next)=>{
+
+    let user = req.user;
+
+    if(user.role === "admin"){
+        
+        return next();
+
+    }else{            
+        return res.status(403).json({
+            "message": "User do not access to this route"
+        });
+    }
+
+ }
+
 module.exports = {
-    checkUserLoggedIn
+    checkUserLoggedIn,
+    checkAdminRole
 }

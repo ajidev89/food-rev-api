@@ -40,7 +40,7 @@ const login = async (req, res) => {
 
 
     return res.json({
-        "message":"Imvaild credetials",
+        "message":"Invaild credetials",
     },403)
 
    

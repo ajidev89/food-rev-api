@@ -1,11 +1,12 @@
 const express = require('express')
 const { body } = require('express-validator');
 
-const { checkUserLoggedIn } = require("../middleware/AuthMiddleware")
+const { checkAdminRole,checkUserLoggedIn } = require("../middleware/AuthMiddleware")
 
 const router = express.Router(); 
 const UserController = require("../controllers/UserController")
 const BlogController = require("../controllers/BlogController")
+const CloudinaryController = require("../controllers/CloudinaryController")
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger/swagger.json');
 
@@ -16,7 +17,14 @@ router.get('/api-documentation', swaggerUi.setup(swaggerDocument));
 router.post('/login',body('email').isEmail(), UserController.login)
 router.post('/register',body('email').isEmail(),UserController.register)
 
-router.get("/admin/blogs",checkUserLoggedIn,BlogController.getBlog)
+router.get("/admin/blogs",checkUserLoggedIn,checkAdminRole,BlogController.getBlog)
+router.post("/admin/blog/new",checkUserLoggedIn,checkAdminRole,BlogController.addBlog)
+router.get("/admin/blog/:id",checkUserLoggedIn,checkAdminRole,BlogController.getsingleBlog)
+router.put("/admin/blog/:id",checkUserLoggedIn,checkAdminRole,BlogController.updateBlog)
+router.delete("/admin/blog/:id",checkUserLoggedIn,checkAdminRole,BlogController.deleteBlog)
 
+
+//Uploader
+router.post("/admin/upload",checkUserLoggedIn,checkAdminRole,CloudinaryController.uploadImage)
 
 module.exports = router
