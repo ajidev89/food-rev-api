@@ -1,19 +1,20 @@
 const express = require('express')
 const { dbConnection } = require('./src/database');
-const { CorsMiddleWare } = require('./src/middleware/Cors');
 const router = require('./src/routes');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express()
 const fileUpload = require("express-fileupload");
-
+const cors = require('cors');
 dbConnection(app)
 app.use(
     fileUpload({
       useTempFiles: true
     })
 );
-app.use(CorsMiddleWare);
+app.use(cors({
+  origin:"*"
+}));
 
 //MiddleWare
 app.use(morgan("tiny"));
