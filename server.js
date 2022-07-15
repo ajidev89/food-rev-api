@@ -1,7 +1,8 @@
 const express = require('express')
-const { dbConnection } = require('./src/database')
-const router = require('./src/routes')
-const bodyParser = require('body-parser')
+const { dbConnection } = require('./src/database');
+const { CorsMiddleWare } = require('./src/middleware/Cors');
+const router = require('./src/routes');
+const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express()
 const fileUpload = require("express-fileupload");
@@ -12,6 +13,7 @@ app.use(
       useTempFiles: true
     })
 );
+app.use(CorsMiddleWare);
 
 //MiddleWare
 app.use(morgan("tiny"));

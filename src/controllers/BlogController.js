@@ -10,7 +10,7 @@ const getBlog = async (req, res) => {
     }
     
     try{
-        const blogs = await Blog.find()
+        const blogs = await Blog.find().populate("users")
         .skip(pageOptions.page * pageOptions.limit)
         .limit(pageOptions.limit)
 

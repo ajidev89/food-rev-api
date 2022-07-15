@@ -15,14 +15,15 @@ router.use('/api-documentation', swaggerUi.serve);
 router.get('/api-documentation', swaggerUi.setup(swaggerDocument));
 
 router.post('/login',body('email').isEmail(), UserController.login)
-router.post('/register',body('email').isEmail(),UserController.register)
-
+router.post('/admin/register',body('email').isEmail(),UserController.register)
 router.get("/admin/blogs",checkUserLoggedIn,checkAdminRole,BlogController.getBlog)
 router.post("/admin/blog/new",checkUserLoggedIn,checkAdminRole,BlogController.addBlog)
 router.get("/admin/blog/:id",checkUserLoggedIn,checkAdminRole,BlogController.getsingleBlog)
 router.put("/admin/blog/:id",checkUserLoggedIn,checkAdminRole,BlogController.updateBlog)
 router.delete("/admin/blog/:id",checkUserLoggedIn,checkAdminRole,BlogController.deleteBlog)
 
+//user
+router.get("/blogs",BlogController.getBlog)
 
 //Uploader
 router.post("/admin/upload",checkUserLoggedIn,checkAdminRole,CloudinaryController.uploadImage)
