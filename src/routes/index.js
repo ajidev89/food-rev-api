@@ -16,6 +16,8 @@ router.get('/api-documentation', swaggerUi.setup(swaggerDocument));
 
 router.post('/login',body('email').isEmail(), UserController.login)
 router.post('/admin/register',body('email').isEmail(),UserController.register)
+router.post('/admin/reset-password',body('email').isEmail(),UserController.resetPassword)
+router.post('/admin/change-password',body('token').isLength(24),UserController.changePassword)
 router.get("/admin/blogs",checkUserLoggedIn,checkAdminRole,BlogController.getBlog)
 router.post("/admin/blog/new",checkUserLoggedIn,checkAdminRole,BlogController.addBlog)
 router.get("/admin/blog/:id",checkUserLoggedIn,checkAdminRole,BlogController.getsingleBlog)

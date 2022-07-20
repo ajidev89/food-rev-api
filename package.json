@@ -1,1 +1,29 @@
-{"name":"food-rev","version":"1.0.0","description":"Testing node","main":"app.js","scripts":{"start":"node server.js"},"dependencies":{"bcrypt":"^5.0.1","body-parser":"^1.20.0","cloudinary":"^1.30.0","cors":"^2.8.5","dotenv":"^16.0.1","express":"^4.18.1","express-fileupload":"^1.4.0","express-validator":"^6.14.2","jsonwebtoken":"^8.5.1","mongodb":"^4.7.0","mongoose":"^6.4.3","morgan":"^1.10.0","multiparty":"^4.2.3","nodemailer":"^6.7.7","nodemon":"^2.0.19","swagger-ui-express":"^4.4.0"}}
+{
+    "name": "food-rev",
+    "version": "1.0.0",
+    "description": "Testing node",
+    "main": "app.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "bcrypt": "^5.0.1",
+        "body-parser": "^1.20.0",
+        "cloudinary": "^1.30.0",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.1",
+        "ejs": "^3.1.8",
+        "express": "^4.18.1",
+        "express-fileupload": "^1.4.0",
+        "express-validator": "^6.14.2",
+        "jsonwebtoken": "^8.5.1",
+        "mongodb": "^4.7.0",
+        "mongoose": "^6.4.3",
+        "morgan": "^1.10.0",
+        "multiparty": "^4.2.3",
+        "nodemailer": "^6.7.7",
+        "nodemon": "^2.0.19",
+        "randomstring": "^1.2.2",
+        "swagger-ui-express": "^4.4.0"
+    }
+}

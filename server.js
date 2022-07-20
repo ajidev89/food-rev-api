@@ -16,6 +16,10 @@ app.use(cors({
   origin:"*"
 }));
 
+//register a view engine 
+app.set('view engine','ejs');
+app.set("views" , "src/views")
+
 //MiddleWare
 app.use(morgan("tiny"));
 app.use(bodyParser.urlencoded({ extended: true })); 
