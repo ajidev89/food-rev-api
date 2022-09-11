@@ -6,6 +6,7 @@ const { checkAdminRole,checkUserLoggedIn } = require("../middleware/AuthMiddlewa
 const router = express.Router(); 
 const UserController = require("../controllers/UserController")
 const BlogController = require("../controllers/BlogController")
+const TagController = require("../controllers/TagController")
 const CloudinaryController = require("../controllers/CloudinaryController")
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger/swagger.json');
@@ -23,6 +24,10 @@ router.post("/admin/blog/new",checkUserLoggedIn,checkAdminRole,BlogController.ad
 router.get("/admin/blog/:id",checkUserLoggedIn,checkAdminRole,BlogController.getsingleBlog)
 router.put("/admin/blog/:id",checkUserLoggedIn,checkAdminRole,BlogController.updateBlog)
 router.delete("/admin/blog/:id",checkUserLoggedIn,checkAdminRole,BlogController.deleteBlog)
+router.post("/admin/tags/new",checkUserLoggedIn,checkAdminRole,TagController.createTag)
+router.get("/admin/tags",checkUserLoggedIn,checkAdminRole,TagController.getTag)
+router.put("/admin/tags/:id",checkUserLoggedIn,checkAdminRole,TagController.updateTag)
+router.delete("/admin/tags/:id",checkUserLoggedIn,checkAdminRole,TagController.deleteTag)
 
 //user
 router.get("/blogs",BlogController.getBlog)

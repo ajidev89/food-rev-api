@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
+const tagsSchema = new Schema({
+    title: {
+        type: String,
+        required: true
+    }
+})
 
 const blogSchema = new Schema({
     title:{
@@ -15,21 +21,23 @@ const blogSchema = new Schema({
         type:String,
     },
     uuid:{
-        type:String,
-        required:true
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
-    tags:[{
-        type:String
-    }]
+    tags:[
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Tag'
+        }
+    ]
 },
 { 
     toJSON: { 
         virtuals: true,
         transform: function (doc, ret) {
-        delete ret.uuid;
-        delete ret._id;
-        delete ret.__v;
-        return ret;
+            delete ret._id;
+            delete ret.__v;
+            return ret;
         }
     }
 }

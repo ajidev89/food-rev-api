@@ -10,7 +10,7 @@ const getBlog = async (req, res) => {
     }
     
     try{
-        const blogs = await Blog.find().populate("users")
+        const blogs = await Blog.find().populate("uuid").populate("tags")
         .skip(pageOptions.page * pageOptions.limit)
         .limit(pageOptions.limit)
 
@@ -32,9 +32,9 @@ const getsingleBlog = async(req, res) => {
     let id = req.params.id
 
     try{
-       let blog =  await Blog.findById(id);
+       let blog =  await Blog.findById(id).populate("uuid").populate("tags");
        return res.status(200).json({
-            "blogs":blog
+            blog
         });
     }
     catch(error){
