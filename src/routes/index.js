@@ -7,14 +7,16 @@ const router = express.Router();
 const UserController = require("../controllers/UserController")
 const BlogController = require("../controllers/BlogController")
 const TagController = require("../controllers/TagController")
+const CalendarController = require("../controllers/CalendarController")
 const CloudinaryController = require("../controllers/CloudinaryController")
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger/swagger.json');
-
 //Swagger
 router.use('/api-documentation', swaggerUi.serve);
 router.get('/api-documentation', swaggerUi.setup(swaggerDocument));
 
+//date
+router.post('/event/calendar',CalendarController.createEvent)
 router.post('/login',body('email').isEmail(), UserController.login)
 router.post('/admin/register',body('email').isEmail(),UserController.register)
 router.post('/admin/reset-password',body('email').isEmail(),UserController.resetPassword)
